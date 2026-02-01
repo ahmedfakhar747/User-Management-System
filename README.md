@@ -1,4 +1,3 @@
-
 ---
 # 👥 User Management System (CLI)
 
@@ -53,13 +52,18 @@ This project demonstrates clean architecture, solid data handling, and a polishe
 
 ### Install Dependencies
 ```bash
-pip install rich readchar
-````
+pip install -r requirements.txt
+```
+
+Or install manually:
+```bash
+pip install rich>=13.0 readchar>=4.0.1 pytest>=8
+```
 
 ### Run the Application
 
 ```bash
-python main.py
+python src\ums\main.py
 ```
 
 ---
@@ -86,7 +90,7 @@ Basic unit tests were written using **pytest** to validate:
 Run tests with:
 
 ```bash
-python -m pytest
+python -m pytest tests/tests.py -v
 ```
 
 ---
