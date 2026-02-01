@@ -1,10 +1,10 @@
 import os
 import readchar
 import re
-from models import User, UserDatabase
+from .models import User, UserDatabase
+from ..theme import print_header, print_error, print_success, print_info
 from rich.console import Console
 from rich.table import Table
-from theme import print_header, print_error, print_success, print_info
 
 console = Console()
 
@@ -78,8 +78,16 @@ def run():
                     input("Enter fullname: ").strip(),
                     input("Enter Email Address: ").strip(),
                 )
-                if not email_is_valid(user.email):
-                    print_error("Invalid Email format.")
+                if not user.username:
+                    print_error("Username cannot be empty")
+                    pause()
+                    continue
+                if not user.name:
+                    print_error("Name cannot be empty")
+                    pause()
+                    continue
+                if not email_is_valid(user.email) or not user.email:
+                    print_error("Missing or Invalid Email format.")
                     pause()
                     continue
                 db.insert(user)

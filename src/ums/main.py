@@ -1,6 +1,12 @@
 import sys
-from cli import run
-from theme import print_header, print_error, print_success, print_info
+import os
+from pathlib import Path
+
+# Add src directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from ums.core.cli import run
+from ums.theme import print_error
 
 
 def main():
