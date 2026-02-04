@@ -109,7 +109,7 @@ python -m pytest tests/tests.py -v
 ## 👤 Author
 
 **Ahmed Fakhar**
-Aspiring Software / AI Engineer
+Aspiring future AI Engineer
 Focused on writing clean, practical, and scalable Python applications.
 
 ---
