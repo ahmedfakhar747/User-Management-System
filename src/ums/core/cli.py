@@ -23,7 +23,7 @@ def pause():
 
 def exit_program() -> None:
     """Exit the application gracefully."""
-    console.rule("[bold magenta]GOODBYE 👋[/bold magenta]")
+    print_header("GOODBYE", "👋")
     console.print(
         "\n[bold yellow]Thank you for using the User Management System![/bold yellow]"
     )
@@ -33,11 +33,12 @@ def exit_program() -> None:
 def display_menu() -> None:
     """Display the main menu."""
     clear_console()
-    print_header("User Management System")
+    print_header("User Management System", "⚙️")
     console.print(
         "[bold magenta]Welcome to the User Management System![/bold magenta]"
     )
-    table = Table()
+    from rich import box
+    table = Table(box=box.ROUNDED, show_header=True, header_style="bold cyan")
     commands = [
         ("1. ", "➕  Add User", "Add a new user to the system"),
         ("2. ", "🔍  Search User", "Search for a user by username"),
@@ -72,7 +73,7 @@ def run():
         match option:
             case "add user" | "1":
                 clear_console()
-                print_header("Adding User...")
+                print_header("Adding User...", "➕")
                 user = User(
                     input("Enter username: ").strip(),
                     input("Enter fullname: ").strip(),
@@ -95,7 +96,7 @@ def run():
 
             case "search user" | "2":
                 clear_console()
-                print_header("Searching User...")
+                print_header("Searching User...", "🔍")
                 username = input("Enter username: ").strip()
                 user = db._find_user_by_username(username)
                 if user:
@@ -107,14 +108,14 @@ def run():
 
             case "delete user" | "3":
                 clear_console()
-                print_header("Deleting User...")
+                print_header("Deleting User...", "🗑️")
                 username = input("Enter username: ").strip()
                 db.delete(username)
                 pause()
 
             case "update user" | "4":
                 clear_console()
-                print_header("Updating User...")
+                print_header("Updating User...", "✏️")
                 current_username = input("Enter current username to update: ").strip()
                 new_username = (
                     input("Enter new username (leave blank to skip): ").strip() or None
@@ -136,7 +137,7 @@ def run():
 
             case "see all users" | "5":
                 clear_console()
-                print_header("All Registered Users...")
+                print_header("All Registered Users...", "📋")
                 db.list_all()
                 pause()
 

@@ -1,3 +1,8 @@
+# I have done inserting, saving, and loading function and delete, update functions are remaining to update
+
+import json
+from pathlib import Path
+
 from rich.table import Table
 from rich.console import Console
 
@@ -23,8 +28,12 @@ class User:
 
 
 class UserDatabase:
-    def __init__(self):
+    def __init__(self, filepath: str = "data/users.json"):
+        """Initialize the user database with a JSON file path."""
         self.users: list[User] = []
+        self.filepath = filepath
+        self.load_users()
+
 
     def __repr__(self) -> str:
         if not self.users:
@@ -35,6 +44,41 @@ class UserDatabase:
         return f"<UserDatabase users={len(self.users)} [{preview}{more}]>"
 
     # ---------- helpers ----------
+
+    def load_users(self) -> None:
+        """Load users from the JSON file."""
+        if Path(self.filepath).exists():
+            try:
+                data = json.loads(Path(self.filepath).read_text())
+                for user_data in data:
+                    try:
+                        user = User(
+                            user_data['username'],
+                            user_data['name'],
+                            user_data['email']
+                        )
+                        self.users.append(user)
+                    except ValueError:
+                        pass # Skip invalid entries
+            except json.JSONDecodeError:
+                self.users = []  # Start fresh if corrupted
+
+    def save_users(self) -> None:
+        """Save all users to JSON file."""
+        data = [
+            {
+                "username": u.username,
+                "name": u.name,
+                "email": u.email,
+            }
+            for u in self.users
+        ]
+
+        # Create directory if it doesn't exists
+        Path(self.filepath).parent.mkdir(parents=True, exist_ok=True)
+
+        # Save to file
+        Path(self.filepath).write_text(json.dumps(data, indent=4))
 
     def _find_user_by_username(self, username: str) -> User | None:
         """Search for a user by username."""
@@ -63,7 +107,14 @@ class UserDatabase:
     # ---------- public API ----------
 
     def insert(self, user: User) -> bool:
-        """Add a new user to the database."""
+        """Insert user and save to JSON."""
+        if not isinstance(user, User):
+            user_repr = getattr(user, "username", str(user))  # try to show username if possible
+            console.print(
+                f"[bold red]Error:[/bold red] '{user_repr}' is not a valid User object"
+            )
+            return False
+
         if self._find_user_by_username(user.username):
             console.print(
                 f"[bold red]Error:[/bold red] Username "
@@ -78,7 +129,9 @@ class UserDatabase:
             )
             return False
 
-        self._insert_sorted(user)
+        import bisect
+        bisect.insort(self.users, user, key=lambda u: u.username.lower())
+        self.save_users() # <- Save after insert
         console.print(f"[green]✔ User '{user.username}' added successfully[/green]")
         return True
 
@@ -110,6 +163,7 @@ class UserDatabase:
             return False
 
         self.users.remove(user)
+        self.save_users()  # ← Save after delete
         console.print(f"[green]✔ User '{user.username}' deleted successfully[/green]")
         return True
 
@@ -158,5 +212,6 @@ class UserDatabase:
             self.users.remove(user)
             self._insert_sorted(user)
 
+        self.save_users() # ← Save after update
         console.print(f"[green]✔ User '{old_username}' updated successfully[/green]")
         return True
