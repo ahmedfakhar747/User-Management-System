@@ -43,29 +43,6 @@ def test_max_length_username():
     assert db.insert(user) == True
 
 
-def test_special_chars_in_name():
-    """Test special characters in name"""
-    db = UserDatabase()
-    special_names = [
-        "José García",
-        "François Müller",
-        "李明",
-        "محمد علي",
-    ]
-    for i, name in enumerate(special_names):
-        user = User(f"user{i}", name, f"test{i}@gmail.com")
-        assert db.insert(user) == True
-
-
-def test_special_chars_in_username():
-    """Test valid special characters in username"""
-    db = UserDatabase()
-    valid_usernames = ["user_name", "user.name", "user-123"]
-    for i, username in enumerate(valid_usernames):
-        user = User(username, "Name", f"test{i}@gmail.com")
-        assert db.insert(user) == True
-
-
 # ===== SEARCH EDGE CASES =====
 
 

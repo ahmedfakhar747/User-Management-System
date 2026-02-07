@@ -35,6 +35,11 @@
         "email": "aisha.noor@example.com"
     },
     {
+        "username": "farah",
+        "name": "Farah Khan",
+        "email": "farah@gmail.com"
+    },
+    {
         "username": "michaelb",
         "name": "Michael Brown",
         "email": "michael.brown@example.com"
@@ -43,5 +48,20 @@
         "username": "hana_s",
         "name": "Hana Suzuki",
         "email": "hana.suzuki@example.com"
+    },
+    {
+        "username": "hassan",
+        "name": "Name",
+        "email": "hassan@gmail.com"
+    },
+    {
+        "username": "malik",
+        "name": "Name",
+        "email": "malik@gmail.com"
+    },
+    {
+        "username": "testuser",
+        "name": "Test",
+        "email": "test@gmail.com"
     }
 ]
