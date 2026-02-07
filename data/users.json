@@ -1,12 +1,47 @@
 [
     {
-        "username": "ahmed",
-        "name": "Ahmed Fakhar",
-        "email": "ahmedfakhar@gmail.com"
+        "username": "johndoe",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
     },
     {
-        "username": "zara",
-        "name": "Zara Khan",
-        "email": "zara@hotmail.com"
+        "username": "emilyw",
+        "name": "Emily Watson",
+        "email": "emily.watson@example.com"
+    },
+    {
+        "username": "ali_k",
+        "name": "Ali Khan",
+        "email": "ali.khan@example.com"
+    },
+    {
+        "username": "lucas_m",
+        "name": "Lucas Martinez",
+        "email": "lucas.martinez@example.com"
+    },
+    {
+        "username": "sophia_lee",
+        "name": "Sophia Lee",
+        "email": "sophia.lee@example.com"
+    },
+    {
+        "username": "danielp",
+        "name": "Daniel Peterson",
+        "email": "daniel.p@example.com"
+    },
+    {
+        "username": "aisha_n",
+        "name": "Aisha Noor",
+        "email": "aisha.noor@example.com"
+    },
+    {
+        "username": "michaelb",
+        "name": "Michael Brown",
+        "email": "michael.brown@example.com"
+    },
+    {
+        "username": "hana_s",
+        "name": "Hana Suzuki",
+        "email": "hana.suzuki@example.com"
     }
 ]

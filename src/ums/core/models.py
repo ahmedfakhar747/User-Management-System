@@ -51,15 +51,16 @@ class UserDatabase:
             try:
                 data = json.loads(Path(self.filepath).read_text())
                 for user_data in data:
-                    try:
-                        user = User(
-                            user_data['username'],
-                            user_data['name'],
-                            user_data['email']
-                        )
-                        self.users.append(user)
-                    except ValueError:
-                        pass # Skip invalid entries
+                    if not self._find_user_by_username(user_data['username']) and not self._find_user_by_email(user_data['email']):
+                        try:
+                            user = User(
+                                user_data['username'],
+                                user_data['name'],
+                                user_data['email']
+                            )
+                            self.users.append(user)
+                        except ValueError:
+                            pass # Skip invalid entries
             except json.JSONDecodeError:
                 self.users = []  # Start fresh if corrupted
 
@@ -143,9 +144,9 @@ class UserDatabase:
 
         table = Table(title="User Database")
         table.add_column("#", justify="right", style="cyan")
-        table.add_column("Username", style="magenta")
-        table.add_column("Name", style="green")
-        table.add_column("Email", style="yellow")
+        table.add_column("Username", style="magenta", width=20)
+        table.add_column("Name", style="green", width=25)
+        table.add_column("Email", style="yellow", width=30)
 
         for i, user in enumerate(self.users, start=1):
             table.add_row(str(i), user.username, user.name, user.email)

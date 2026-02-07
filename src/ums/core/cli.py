@@ -40,18 +40,20 @@ def display_menu() -> None:
     from rich import box
     table = Table(box=box.ROUNDED, show_header=True, header_style="bold cyan")
     commands = [
-        ("1. ", "➕  Add User", "Add a new user to the system"),
-        ("2. ", "🔍  Search User", "Search for a user by username"),
-        ("3. ", "🗑️  Delete User", "Remove a user from the system"),
-        ("4. ", "✏️  Update User", "Update user information"),
-        ("5. ", "👁️  See All Users", "Display all registered users"),
-        ("6. ", "⛔  Exit", "Exit the application"),
+        ("1. ", "Add User", "Add a new user to the system"),
+        ("2. ",  "Search User", "Search for a user by username"),
+        ("3. ", "Delete User", "Remove a user from the system"),
+        ("4. ", "Update User", "Update user information"),
+        ("5. ", "See All Users", "Display all registered users"),
+        ("6. ", "Exit", "Exit the application"),
     ]
-    table.add_column("#", justify="left", no_wrap=True, width=3)
+    
+    table.add_column("#", justify="left", no_wrap=True, width=3, style="dim")
     table.add_column("Command", justify="center", style="magenta", width=30)
     table.add_column("Description", style="green", width=50)
+
     for sr, command, description in commands:
-        table.add_row(sr, f"[bold blue]{command}[/bold blue]", description)
+        table.add_row(sr, command, description)
     console.print(table)
     console.print("_" * 93)
 
