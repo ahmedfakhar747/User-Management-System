@@ -130,6 +130,13 @@ class UserDatabase:
             )
             return False
 
+        if len(user.username) > 10:
+            console.print(
+                f"[bold red]Error:[/bold red] Username "
+                f"'[yellow]{user.username}[/yellow]' is too long"
+            )
+            return False
+
         import bisect
         bisect.insort(self.users, user, key=lambda u: u.username.lower())
         self.save_users() # <- Save after insert

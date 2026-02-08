@@ -1,5 +1,15 @@
 [
     {
+        "username": "adrian_a",
+        "name": "Adrian Alex",
+        "email": "adriana@gmail.com"
+    },
+    {
+        "username": "bilal",
+        "name": "Bilal Izhar",
+        "email": "bilal@gmail.com"
+    },
+    {
         "username": "johndoe",
         "name": "John Doe",
         "email": "john.doe@example.com"
@@ -19,6 +29,7 @@
         "name": "Lucas Martinez",
         "email": "lucas.martinez@example.com"
     },
+    
     {
         "username": "sophia_lee",
         "name": "Sophia Lee",
@@ -51,17 +62,17 @@
     },
     {
         "username": "hassan",
-        "name": "Name",
+        "name": "Hassan Fazal",
         "email": "hassan@gmail.com"
     },
     {
         "username": "malik",
-        "name": "Name",
+        "name": "Malik Zubair",
         "email": "malik@gmail.com"
     },
     {
-        "username": "testuser",
-        "name": "Test",
-        "email": "test@gmail.com"
+        "username": "zara",
+        "name": "Zara Khan",
+        "email": "zara@gmail.com"
     }
 ]
